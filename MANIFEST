@@ -1,0 +1,12 @@
+Changes
+Makefile.PL
+MANIFEST
+ppport.h
+README
+ScoreBoard.xs
+t/IPC-ScoreBoard.t
+lib/IPC/ScoreBoard.pm
+README
+mk_README.sh
+perl-IPC-ScoreBoard.spec
+META.yml                                 Module meta-data (added by MakeMaker)
