@@ -20,8 +20,9 @@
 #     define atomic_add(ptr, v) __sync_add_and_fetch((ptr), (v))
 #     define atomic_sub(ptr, v) __sync_sub_and_fetch((ptr), (v))
 #   endif
-
 # endif
+
+# include "config.h"
 
 # ifndef expect
 #   define expect(expr,value) (expr)
