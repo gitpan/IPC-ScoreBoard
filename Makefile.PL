@@ -8,15 +8,18 @@ use Config;
 
 open my $f, '>', 'config.h' or die "cannot write config.h";
 
-my $inc='-I'.$Config{archlibexp}.'/CORE -I..';
+my $cc=(join(' ', map {$Config{$_}} qw/cc ccflags optimize/).
+	' -I'.$Config{archlibexp}.'/CORE -I. -o x util/check.c');
 
-warn <<'EOF';
+warn <<"EOF";
 =====================================================================
-== checking if the compiler supports atomic operations on IV values.
+== checking for compiler support of atomic operations on IV values.
 == you may see some warnings or error messages.
 ==
+== $cc
+==
 EOF
-if(system 'cd util && gcc '.$inc.' -o x check.c && ./x') {
+if(system $cc or system './x') {
   print $f <<'EOF';
 # undef HAVE_ATOMICS
 # undef atomic_add
