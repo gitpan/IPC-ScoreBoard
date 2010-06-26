@@ -6,6 +6,16 @@ use warnings;
 use Test::More tests => 89;
 #use Test::More 'no_plan';
 
+BEGIN {
+  warn "\n";
+  local $/;
+  my $f;
+  open $f, '<', 'out1' and warn ">>> out1\n".readline($f)."<<< out1\n";
+  undef $f;
+  open $f, '<', 'out2' and warn ">>> out2\n".readline($f)."<<< out2\n";
+  undef $f;
+}
+
 BEGIN { use_ok('IPC::ScoreBoard') };
 
 my @param=([3,5,0], [3,5,8]);

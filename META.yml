@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                IPC-ScoreBoard
-version:             0.03
+version:             0.04
 abstract:            IPC similar to the apache scoreboard
 license:             ~
 author:              

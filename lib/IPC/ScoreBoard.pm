@@ -6,7 +6,7 @@ use warnings;
 use File::Map qw/:map/;
 use Carp;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 require XSLoader;
 XSLoader::load('IPC::ScoreBoard', $VERSION);

@@ -9,23 +9,29 @@ use Config;
 open my $f, '>', 'config.h' or die "cannot write config.h";
 
 my $cc=(join(' ', map {$Config{$_}} qw/cc ccflags optimize/).
-	' -I'.$Config{archlibexp}.'/CORE -I. -o x util/check.c');
+	' -I'.$Config{archlibexp}.'/CORE -I. -o x util/check.c >out1 2>&1');
 
 warn <<"EOF";
 =====================================================================
 == checking for compiler support of atomic operations on IV values.
-== you may see some warnings or error messages.
 ==
 == $cc
 ==
 EOF
-if(system $cc or system './x') {
+
+my $rc1=system $cc;
+my $rc2;
+$rc2=system './x >out2 2>&1' unless $rc1;
+my $arch=$Config{archname};
+$arch=($arch=~/bsd/ and $arch=~/i368/ and $arch!~/64int/);
+
+if($rc1 or $rc2 or $arch) {
   print $f <<'EOF';
 # undef HAVE_ATOMICS
 # undef atomic_add
 # undef atomic_sub
 # ifdef __GNUC__
-#   pragma message "  but unusable long long atomics"
+#   pragma message "  but unusable IV atomics"
 # endif
 EOF
   warn <<'EOF';
