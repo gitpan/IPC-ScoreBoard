@@ -1,5 +1,9 @@
 Revision history for Perl extension IPC::ScoreBoard.
 
+0.05  Sat Jun 26 18:48:21 CEST 2010
+      - yet another try to do the right check for atomic operations
+      	special check for bsd-386
+
 0.03  Wed Jun 23 08:57:45 CEST 2010
       - another try to do the right check for atomic operations
 

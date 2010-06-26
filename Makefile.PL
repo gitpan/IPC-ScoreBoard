@@ -23,7 +23,7 @@ my $rc1=system $cc;
 my $rc2;
 $rc2=system './x >out2 2>&1' unless $rc1;
 my $arch=$Config{archname};
-$arch=($arch=~/bsd/ and $arch=~/i368/ and $arch!~/64int/);
+$arch=($arch=~/bsd/ and $arch=~/i386/ and $arch!~/64int/);
 
 if($rc1 or $rc2 or $arch) {
   print $f <<'EOF';
